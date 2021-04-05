@@ -5,7 +5,7 @@
 ### Author: Boshra Jaber
 * [tests report](https://github.com/BoshraJaber/bearer-auth/actions)
 * [Heroku application for main branch](https://boshra-bearer-auth.herokuapp.com/)
-* [Pull Request to main](https://github.com/BoshraJaber/bearer-auth/pull/1)
+* [Pull Request to main](https://github.com/BoshraJaber/bearer-auth/pull/2)
 
 ## Setup
 - `.env` requirements:
@@ -20,21 +20,32 @@
 - Running the app
  * `npm start` or `nodemon`
  1. Endpoint: `/signup`
-   * Returns Object:
-  ```
+   * Returns Object Example:
+```
   {
-   "username" : "Boshra"
-   "token": "Generated token"
-  }
-  ```
+    "user": {
+        "_id": "606b71e1b7b58d6c7855756c",
+        "username": "w",
+        "password": "$2b$10$Wcv5T8gqTjXl/XMKJy1Ih.evtQRvb9IC6rxYCDELcblOqix.SXwRO",
+        "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InciLCJpYXQiOjE2MTc2NTQyNDEsImV4cCI6MTYxNzY1NDQyMX0.wmRbNfOfJ4QM3eBQaRwA7tukeNxotUzgGBa30w9ZYlc"}
+
+   ```
+
  2. Endpoint: `/signin`
    * Returns Object:
   ```
   {
-   "username" : "Boshra"
-   "password": "Generated token"
-    }
+    "user": {
+        "_id": "606b71e1b7b58d6c7855756c",
+        "username": "w",
+        "password": "$2b$10$Wcv5T8gqTjXl/XMKJy1Ih.evtQRvb9IC6rxYCDELcblOqix.SXwRO",
+        "__v": 0
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InciLCJpYXQiOjE2MTc2NTQzMDMsImV4cCI6MTYxNzY1NDQ4M30.-PH5weEr2wegaEjXNO_9paj5cPbs--fHUf6gaIOpPmg"}
   ``` 
+
  3. Endpoint: `/error`
    * Returns Object:
   ```
@@ -54,25 +65,29 @@
    }
   ```
   5. Endpoint: `/users`
-   * Returns Object:
+   * Returns Array of users:
   ```
-  {
-   "error": 404,
-   "route": "/",
-   "message": "Not Found"
-   }
+  [
+    "user1",
+    "user2",
+  ]
   ```
+  6. Endpoint: `/secret`
+   * Returns :
+   `"Welcome to the secret area!"`
 
 
 
 - In package.json file add:
-  ```
-  "scripts": {
+ ```
+"scripts": {
     "start": "node index.js",
-    "dev": "nodemon",
-    "test": "jest --coverage --verbose ",
-    "lint": "eslint '**/*.js'"
-  }
+    "watch": "nodemon index.js",
+    "test-watch": "jest --watchAll",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node" },
   ```
 
 ## Tests
@@ -81,4 +96,4 @@ Lint Tests: `npm run lint`
 
 ## UML:
 Here is a UML of my code: 
-![](./src/lab6.png)
+![](./src/UML-beaerlab.png)
