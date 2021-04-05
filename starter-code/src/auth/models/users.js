@@ -15,8 +15,9 @@ users.virtual('token').get(function () {
   let tokenObject = {
     username: this.username,
   }
-  return jwt.sign(tokenObject,process.env.SECRET,{expiresIn:'15m'});// expire to session
+  return jwt.sign(tokenObject,process.env.SECRET,{expiresIn:'3m'});// expire to session
 });
+//
 
 users.pre('save', async function () {
   if (this.isModified('password')) {
