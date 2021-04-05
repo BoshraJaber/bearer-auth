@@ -15,7 +15,7 @@ users.virtual('token').get(function () {
   let tokenObject = {
     username: this.username,
   }
-  return jwt.sign(tokenObject,process.env.SECRET);
+  return jwt.sign(tokenObject,process.env.SECRET,{expiresIn:'15m'});// expire to session
 });
 
 users.pre('save', async function () {
@@ -26,10 +26,16 @@ users.pre('save', async function () {
 
 // BASIC AUTH
 users.statics.authenticateBasic = async function (username, password) {
-  const user = await this.findOne({ username })
-  const valid = await bcrypt.compare(password, user.password)
-  if (valid) { return user; }
-  throw new Error('Invalid User');
+  try{
+    const user = await this.findOne({ username })
+    const valid = await bcrypt.compare(password, user.password)
+    if (valid) { return user; } //added else
+    else{
+      throw new Error('Invalid User');
+    }
+  } catch (e) {
+    throw new Error(e.message)
+  }
 }
 
 // BEARER AUTH

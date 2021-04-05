@@ -24,8 +24,8 @@ describe('Auth Router', () => {
 
         const response = await mockRequest.post('/signup').send(users[userType]);
         const userObject = response.body;
-
-        expect(response.status).toBe(201);
+        console.log(userObject);
+        expect(response.status).toBe(200);
         expect(userObject.token).toBeDefined();
         expect(userObject.user._id).toBeDefined();
         expect(userObject.user.username).toEqual(users[userType].username)
