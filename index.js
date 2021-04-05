@@ -2,7 +2,7 @@
 
 // Start up DB Server
 const mongoose = require('mongoose');
-require('dotenv').config(); // error 2
+require('dotenv/types').config(); // error 2
 // const server = require('./src/server') // error 3
 // Start the web server
 require('./src/server.js').start(process.env.PORT);
