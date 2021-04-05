@@ -4,6 +4,8 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+// const session = require('express-session');
+
 
 // Esoteric Resources
 const errorHandler = require('./error-handlers/500.js');
@@ -19,6 +21,9 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// app.use(
+//   session({ secret: 'someSecret', saveUninitialized: false, resave: false })
+// );
 
 // Routes
 app.use(authRoutes);
